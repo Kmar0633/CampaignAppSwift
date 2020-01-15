@@ -1,0 +1,6 @@
+framework module Pods_CampaignAppSwift_CampaignAppSwiftUITests {
+  umbrella header "Pods-CampaignAppSwift-CampaignAppSwiftUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
