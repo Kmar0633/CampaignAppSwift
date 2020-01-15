@@ -21,12 +21,10 @@ class ViewController: UIViewController {
         let collid = ref.child("profile").child("1000117052")
 
         collid.observeSingleEvent(of : .value, with : {(Snapshot) in
-            
-            for child in Snapshot.children{
-                self.Name.text=child as? String
-                print(child)
-                
-            }
+            let value = Snapshot.value as? NSDictionary
+            let username = value?["firstname"] as? String ?? ""
+            self.Name.text=username
+            print(username)
             })
 }
 
