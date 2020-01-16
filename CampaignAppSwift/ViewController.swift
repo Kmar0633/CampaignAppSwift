@@ -26,6 +26,7 @@ class ViewController: UIViewController {
             let username = value?["firstname"] as? String ?? ""
             let descriptionfinal=value?["descrip"] as? String ?? ""
             self.Name.text=username
+            self.Name.numberOfLines=6
     self.descriptor.text=descriptionfinal
             print(descriptionfinal)
             print(username)
