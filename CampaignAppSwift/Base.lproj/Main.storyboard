@@ -52,6 +52,7 @@
                     <connections>
                         <outlet property="Name" destination="LQF-Pj-xaj" id="CeG-8c-JPo"/>
                         <outlet property="descriptor" destination="BtY-kF-nwK" id="CUA-He-mNk"/>
+                        <outlet property="image" destination="QV7-yQ-qcA" id="tN4-ac-NM5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
