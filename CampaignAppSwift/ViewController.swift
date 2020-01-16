@@ -20,6 +20,8 @@ class ViewController: UIViewController {
 
     var refProfile: FirebaseApp!
     var ref: DatabaseReference!
+    var number_of_prof_events = 0
+     var number_of_total_events = 0
     var url="https://campaigndata-campaign.appspot.com/?t=upd&w=500&crop=true&file="
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +31,11 @@ class ViewController: UIViewController {
        //  let progressRing = UICircularProgressRing()
         ref = Database.database().reference()
         let collid = ref.child("profile").child("1000116942")
-        let profEventChallenges=ref.child("eventchallengeslist")
+        let profEventChallenges=ref.child("profileeventchallenges").child("1000116942")
+        let totalEventChallenges=ref.child("eventchallenges")
+        
+       
+        
         collid.observeSingleEvent(of : .value, with : {(Snapshot) in
             let value = Snapshot.value as? NSDictionary
             let username = value?["firstname"] as? String ?? ""
@@ -42,19 +48,25 @@ class ViewController: UIViewController {
       
             let urlImage=URL(string:self.url+imageUrl)
             self.image.load(url: urlImage!)
+            
             })
+        totalEventChallenges.observeSingleEvent(of : .value, with : {(snapshot) in
+            self.number_of_total_events=Int(snapshot.childrenCount)
+            print(self.number_of_total_events)
+                 })
         
         profEventChallenges.observeSingleEvent(of : .value, with : {(Snapshot) in
-            for case let rest as DataSnapshot in Snapshot.children {
-               print(rest.value)
-            }
+            
+            self.number_of_prof_events=Int(Snapshot.childrenCount)
+            self.ring.value=CGFloat(self.number_of_prof_events)/CGFloat(self.number_of_total_events)*100
                 })
-        
+       
         
 }
     override func viewWillAppear(_ animated: Bool) {
-        UIView.animate(withDuration: 1.0){
-            self.ring.value = 60
+        UIView.animate(withDuration: 0.2){
+            self.ring.value = 0
+            print(self.number_of_prof_events)
         }
     }
   
