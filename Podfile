@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '9.0'
+platform :ios, '13.0'
 
 # add the Firebase pod for Google Analytics
 
@@ -15,6 +15,8 @@ target 'CampaignAppSwift' do
     pod 'Firebase/Auth'
     pod 'Firebase/Database'
     pod 'Firebase/Core'
+    pod "UICircularProgressRing"
+    pod "MBCircularProgressBar"
   target 'CampaignAppSwiftTests' do
     inherit! :search_paths
     # Pods for testing
