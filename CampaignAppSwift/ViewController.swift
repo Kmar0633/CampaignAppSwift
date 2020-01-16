@@ -12,6 +12,7 @@ import Firebase
 class ViewController: UIViewController {
     @IBOutlet weak var Name: UILabel!
     
+    @IBOutlet weak var descriptor: UILabel!
     var refProfile: FirebaseApp!
     var ref: DatabaseReference!
     override func viewDidLoad() {
@@ -23,7 +24,10 @@ class ViewController: UIViewController {
         collid.observeSingleEvent(of : .value, with : {(Snapshot) in
             let value = Snapshot.value as? NSDictionary
             let username = value?["firstname"] as? String ?? ""
+            let descriptionfinal=value?["descrip"] as? String ?? ""
             self.Name.text=username
+    self.descriptor.text=descriptionfinal
+            print(descriptionfinal)
             print(username)
             })
 }
