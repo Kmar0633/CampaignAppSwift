@@ -10,7 +10,8 @@ import UIKit
 import Firebase
 import UICircularProgressRing
 class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSource{
-    let animals: [String] = ["Horse", "Cow", "Camel", "Sheep", "Goat"]
+    var animals: [String] = []
+    var eventDescrips: [String] = []
    // let colors = [UIColor.blue, UIColor.yellow, UIColor.magenta, UIColor.red, UIColor.brown]
 
     @IBOutlet weak var tableView: UITableView!
@@ -37,6 +38,7 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         self.tableView.delegate = self
         self.tableView.dataSource = self
         FirebaseApp.configure()
+        
         self.ring.value = 0
         // Change any of the properties you'd like
        //  let progressRing = UICircularProgressRing()
@@ -66,7 +68,7 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         profEventChallenges.observeSingleEvent(of : .value, with : {(Snapshot) in
             
             self.number_of_prof_events=Int(Snapshot.childrenCount)
-            
+           
              let profEventChallengesDict = Snapshot.value as? [String : AnyObject] ?? [:]
             totalEventChallenges.observeSingleEvent(of : .value, with : {(snapshot) in
             self.number_of_total_events=Int(snapshot.childrenCount)
@@ -77,7 +79,23 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
                     totalEventChallenges.child(key).observeSingleEvent(of : .value, with : {(Datasnapshot) in
                         let profEventChallengesDetailsDict = Datasnapshot.value as? [String : AnyObject] ?? [:]
                         for (key,value) in profEventChallengesDetailsDict{
+                            print("key"+key)
                             print(value)
+                            if "title" == key{
+                                self.animals.append(value as! String)
+                                
+                                print("est")
+                                print(value)
+                                self.tableView.reloadData()
+                            }
+                            if "desc" == key{
+                                self.eventDescrips.append(value as! String)
+                                
+                                 self.tableView.reloadData()
+                            }
+                            
+                            print(self.animals)
+                            print(self.eventDescrips)
                         }
                         
                     })
@@ -90,15 +108,19 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         
 }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-          return 5
+        return animals.count
+        
       }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200.0;//Choose your custom row height
+    }
       
       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
            let cell:NewEventTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "cell") as! NewEventTableViewCell
 
                 // cell.EventName.backgroundColor = self.colors[indexPath.row]
                  cell.EventName.text = self.animals[indexPath.row]
-
+        cell.EventDescription.text=self.eventDescrips[indexPath.row]
                  return cell
       }
       
