@@ -13,7 +13,8 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
     var animals: [String] = []
     var eventDescrips: [String] = []
    // let colors = [UIColor.blue, UIColor.yellow, UIColor.magenta, UIColor.red, UIColor.brown]
-
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     @IBOutlet weak var tableView: UITableView!
     // Don't forget to enter this in IB also
     let cellReuseIdentifier = "cell"
@@ -34,9 +35,10 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
     var url="https://campaigndata-campaign.appspot.com/?t=upd&w=500&crop=true&file="
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.register(UINib(nibName: "NewEventTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
+        scrollView.isScrollEnabled=true; self.tableView.register(UINib(nibName: "NewEventTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.isScrollEnabled = false;
         FirebaseApp.configure()
         
         self.ring.value = 0
