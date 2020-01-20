@@ -3,12 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0F461556317009F47D4D1151 /* Pods_CampaignAppSwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12154084E577BE0E6C515691 /* Pods_CampaignAppSwiftTests.framework */; };
 		8C1717FCF1604D87E959719D /* Pods_CampaignAppSwift_CampaignAppSwiftUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B40904C0F62BB9B3C966856 /* Pods_CampaignAppSwift_CampaignAppSwiftUITests.framework */; };
+		FC047C5A23D5A7580089A634 /* NewEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC047C5823D5A7580089A634 /* NewEventTableViewCell.swift */; };
+		FC047C5B23D5A7580089A634 /* NewEventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC047C5923D5A7580089A634 /* NewEventTableViewCell.xib */; };
 		FC5C619723CEEC84009BF145 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5C619623CEEC84009BF145 /* AppDelegate.swift */; };
 		FC5C619923CEEC84009BF145 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5C619823CEEC84009BF145 /* SceneDelegate.swift */; };
 		FC5C619B23CEEC84009BF145 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5C619A23CEEC84009BF145 /* ViewController.swift */; };
@@ -48,6 +50,8 @@
 		D7D30E37D0A0427A33FD9F08 /* Pods_CampaignAppSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CampaignAppSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7D3D37F39C28DCA922ADC82 /* Pods-CampaignAppSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampaignAppSwift.debug.xcconfig"; path = "Target Support Files/Pods-CampaignAppSwift/Pods-CampaignAppSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		F129AA348067A7C1F732418D /* Pods-CampaignAppSwift-CampaignAppSwiftUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampaignAppSwift-CampaignAppSwiftUITests.debug.xcconfig"; path = "Target Support Files/Pods-CampaignAppSwift-CampaignAppSwiftUITests/Pods-CampaignAppSwift-CampaignAppSwiftUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		FC047C5823D5A7580089A634 /* NewEventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventTableViewCell.swift; sourceTree = "<group>"; };
+		FC047C5923D5A7580089A634 /* NewEventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewEventTableViewCell.xib; sourceTree = "<group>"; };
 		FC5C619323CEEC84009BF145 /* CampaignAppSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampaignAppSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC5C619623CEEC84009BF145 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC5C619823CEEC84009BF145 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,7 +117,6 @@
 				425F72C3A83AC3D2138AEFE4 /* Pods-CampaignAppSwiftTests.debug.xcconfig */,
 				72B50355651B9FCEBDE54CF6 /* Pods-CampaignAppSwiftTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -150,6 +153,8 @@
 				FC5C619F23CEEC85009BF145 /* Assets.xcassets */,
 				FC5C61A123CEEC85009BF145 /* LaunchScreen.storyboard */,
 				FC5C61A423CEEC85009BF145 /* Info.plist */,
+				FC047C5823D5A7580089A634 /* NewEventTableViewCell.swift */,
+				FC047C5923D5A7580089A634 /* NewEventTableViewCell.xib */,
 			);
 			path = CampaignAppSwift;
 			sourceTree = "<group>";
@@ -285,6 +290,7 @@
 				FC5C61C723CEFE16009BF145 /* GoogleService-Info.plist in Resources */,
 				FC5C61A023CEEC85009BF145 /* Assets.xcassets in Resources */,
 				FC5C619E23CEEC84009BF145 /* Main.storyboard in Resources */,
+				FC047C5B23D5A7580089A634 /* NewEventTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +421,7 @@
 				FC5C619B23CEEC84009BF145 /* ViewController.swift in Sources */,
 				FC5C619723CEEC84009BF145 /* AppDelegate.swift in Sources */,
 				FC5C619923CEEC84009BF145 /* SceneDelegate.swift in Sources */,
+				FC047C5A23D5A7580089A634 /* NewEventTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

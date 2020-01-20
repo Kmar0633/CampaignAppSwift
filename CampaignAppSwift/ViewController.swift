@@ -9,7 +9,15 @@
 import UIKit
 import Firebase
 import UICircularProgressRing
-class ViewController: UIViewController {
+class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSource{
+    let animals: [String] = ["Horse", "Cow", "Camel", "Sheep", "Goat"]
+   // let colors = [UIColor.blue, UIColor.yellow, UIColor.magenta, UIColor.red, UIColor.brown]
+
+    @IBOutlet weak var tableView: UITableView!
+    // Don't forget to enter this in IB also
+    let cellReuseIdentifier = "cell"
+      
+  
     @IBOutlet weak var Name: UILabel!
     @IBOutlet weak var image: UIImageView!
     
@@ -25,6 +33,9 @@ class ViewController: UIViewController {
     var url="https://campaigndata-campaign.appspot.com/?t=upd&w=500&crop=true&file="
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.register(UINib(nibName: "NewEventTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         FirebaseApp.configure()
         self.ring.value = 0
         // Change any of the properties you'd like
@@ -78,6 +89,19 @@ class ViewController: UIViewController {
        
         
 }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+          return 5
+      }
+      
+      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+           let cell:NewEventTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "cell") as! NewEventTableViewCell
+
+                // cell.EventName.backgroundColor = self.colors[indexPath.row]
+                 cell.EventName.text = self.animals[indexPath.row]
+
+                 return cell
+      }
+      
     override func viewWillAppear(_ animated: Bool) {
         UIView.animate(withDuration: 0.2){
             self.ring.value = 0
