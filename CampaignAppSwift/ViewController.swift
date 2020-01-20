@@ -43,22 +43,37 @@ class ViewController: UIViewController {
             let imageUrl=value?["avatar"] as? String ?? ""
             self.Name.text=username
             self.Name.numberOfLines=6
-
+            self.view.bringSubviewToFront(self.events)
     self.descriptor.text=descriptionfinal
       
             let urlImage=URL(string:self.url+imageUrl)
             self.image.load(url: urlImage!)
             
             })
-        totalEventChallenges.observeSingleEvent(of : .value, with : {(snapshot) in
-            self.number_of_total_events=Int(snapshot.childrenCount)
-            print(self.number_of_total_events)
-                 })
+        
         
         profEventChallenges.observeSingleEvent(of : .value, with : {(Snapshot) in
             
             self.number_of_prof_events=Int(Snapshot.childrenCount)
-            self.ring.value=CGFloat(self.number_of_prof_events)/CGFloat(self.number_of_total_events)*100
+            
+             let profEventChallengesDict = Snapshot.value as? [String : AnyObject] ?? [:]
+            totalEventChallenges.observeSingleEvent(of : .value, with : {(snapshot) in
+            self.number_of_total_events=Int(snapshot.childrenCount)
+        self.ring.value=CGFloat(self.number_of_prof_events)/CGFloat(self.number_of_total_events)*100
+            let totalEventChallengesDict = snapshot.value as? [String : AnyObject] ?? [:]
+            for (key, value) in totalEventChallengesDict{
+                if profEventChallengesDict[key] != nil{
+                    totalEventChallenges.child(key).observeSingleEvent(of : .value, with : {(Datasnapshot) in
+                        let profEventChallengesDetailsDict = Datasnapshot.value as? [String : AnyObject] ?? [:]
+                        for (key,value) in profEventChallengesDetailsDict{
+                            print(value)
+                        }
+                        
+                    })
+                }
+            }
+                 })
+            
                 })
        
         
@@ -66,7 +81,7 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         UIView.animate(withDuration: 0.2){
             self.ring.value = 0
-            print(self.number_of_prof_events)
+          
         }
     }
   
