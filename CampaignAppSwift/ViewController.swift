@@ -34,14 +34,27 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
     var number_of_prof_events = 0
      var number_of_total_events = 0
     var finalEventImageUrl=""
+    let screenHeight = UIScreen.main.bounds.height
+    let scrollViewContentHeight = 1200 as CGFloat
     var url="https://campaigndata-campaign.appspot.com/?t=upd&w=500&crop=true&file="
     var imageEventUrl="https://campaigndata-campaign.appspot.com/?t=upd&w=500&crop=true&file="
     override func viewDidLoad() {
         super.viewDidLoad()
+        scrollView.contentSize = CGSize(width:300, height:scrollViewContentHeight-90)
+       
         scrollView.isScrollEnabled=true; self.tableView.register(UINib(nibName: "NewEventTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         self.tableView.delegate = self
+        scrollView.layoutIfNeeded()
+        scrollView.bounces = false
+        tableView.bounces = false
+        self.tableView.frame.size = CGSize(width:300, height:self.tableView.contentSize.height+1000)
+        scrollView.isScrollEnabled=true
+     //   scrollView.contentSize = CGSize(width: scrollView.frame.size.height, height: self.view.frame.width )
+       //  scrollView.contentSize = CGSize(width: 1000, height: 5678 )
         self.tableView.dataSource = self
-        self.tableView.isScrollEnabled = false;
+  //      self.tableView.contentSize = CGSize(width: 2000, height: 5678 )
+       self.tableView.isScrollEnabled = false;
+      //  self.tableView.
         FirebaseApp.configure()
         
         self.ring.value = 0
@@ -119,6 +132,23 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
        
         
 }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let yOffset = scrollView.contentOffset.y
+
+        if scrollView == self.scrollView {
+            if yOffset >= scrollViewContentHeight - screenHeight {
+                scrollView.isScrollEnabled = false
+                tableView.isScrollEnabled = true
+            }
+        }
+
+        if scrollView == self.tableView {
+            if yOffset <= 0 {
+                self.scrollView.isScrollEnabled = true
+                self.tableView.isScrollEnabled = false
+            }
+        }
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return animals.count
         
