@@ -153,11 +153,16 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         return animals.count
         
       }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "profEventsToEventChallenges", sender: self)
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200.0;//Choose your custom row height
     }
-    
+    func tableView(_ tableView: UITableView, widthForRowAt indexPath: IndexPath) -> CGFloat {
+        return self.scrollView.contentSize.width+1000;//Choose your custom row height
+    }
     
       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
            let cell:NewEventTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "cell") as! NewEventTableViewCell
