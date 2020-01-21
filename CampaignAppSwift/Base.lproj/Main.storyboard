@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="7oN-fe-GRX">
-                                <rect key="frame" x="20" y="62" width="387" height="813"/>
+                                <rect key="frame" x="14" y="49" width="387" height="813"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="9" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BtY-kF-nwK">
@@ -39,26 +39,26 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="6ng-TT-7Wo">
-                                                <rect key="frame" x="0.0" y="28" width="362" height="1.1920928955078125e-07"/>
+                                                <rect key="frame" x="0.0" y="28" width="362" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6ng-TT-7Wo" id="EH9-yW-owL">
-                                                    <rect key="frame" x="0.0" y="0.0" width="362" height="1.1920928955078125e-07"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="362" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="IgQ-Rz-3he">
-                                                <rect key="frame" x="0.0" y="28.00000011920929" width="362" height="1.1920928955078125e-07"/>
+                                                <rect key="frame" x="0.0" y="72" width="362" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IgQ-Rz-3he" id="cXa-cC-hXP">
-                                                    <rect key="frame" x="0.0" y="0.0" width="362" height="1.1920928955078125e-07"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="362" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="vO9-6F-bY7">
-                                                <rect key="frame" x="0.0" y="28.000000238418579" width="362" height="1.1920928955078125e-07"/>
+                                                <rect key="frame" x="0.0" y="116" width="362" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vO9-6F-bY7" id="Mhm-WP-fHL">
-                                                    <rect key="frame" x="0.0" y="0.0" width="362" height="1.1920928955078125e-07"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="362" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
@@ -141,12 +141,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="115.84821428571428"/>
+            <point key="canvasLocation" x="99" y="100"/>
         </scene>
-        <!--View Controller-->
+        <!--Event Challenges View Controller-->
         <scene sceneID="7YA-mW-sbu">
             <objects>
-                <viewController id="zSk-sM-fJH" sceneMemberID="viewController">
+                <viewController id="zSk-sM-fJH" customClass="EventChallengesViewController" customModule="CampaignAppSwift" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gbx-ff-fGV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

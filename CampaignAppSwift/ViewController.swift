@@ -132,6 +132,8 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
        
         
 }
+    
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yOffset = scrollView.contentOffset.y
 
@@ -154,15 +156,23 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         
       }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "profEventsToEventChallenges", sender: self)
+        let eventName=self.animals[indexPath.row]
+        print("seguecomplete")
+        self.performSegue(withIdentifier: "profEventsToEventChallenges", sender: indexPath.row)
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "profEventsToEventChallenges"){
+            let svc = segue.destination as! EventChallengesViewController
+            svc.test = "dari halaman sebelumnya"
+        }
+    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200.0;//Choose your custom row height
     }
     func tableView(_ tableView: UITableView, widthForRowAt indexPath: IndexPath) -> CGFloat {
         return self.scrollView.contentSize.width+1000;//Choose your custom row height
     }
+
     
       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
            let cell:NewEventTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "cell") as! NewEventTableViewCell
