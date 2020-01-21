@@ -30,11 +30,16 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A3U-11-kem">
+                        <rect key="frame" x="7" y="46" width="157" height="128"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
                 </subviews>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="EventDescription" destination="t8d-Ac-fw7" id="0ce-az-c7g"/>
+                <outlet property="EventImage" destination="A3U-11-kem" id="wVA-IZ-OuM"/>
                 <outlet property="EventName" destination="DHY-ib-xiG" id="kes-Mu-Chm"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="59.933035714285708"/>

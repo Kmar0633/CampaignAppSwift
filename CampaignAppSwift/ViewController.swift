@@ -12,6 +12,7 @@ import UICircularProgressRing
 class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSource{
     var animals: [String] = []
     var eventDescrips: [String] = []
+    var eventImages: [String] = []
    // let colors = [UIColor.blue, UIColor.yellow, UIColor.magenta, UIColor.red, UIColor.brown]
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -32,7 +33,9 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
     var ref: DatabaseReference!
     var number_of_prof_events = 0
      var number_of_total_events = 0
+    var finalEventImageUrl=""
     var url="https://campaigndata-campaign.appspot.com/?t=upd&w=500&crop=true&file="
+    var imageEventUrl="https://campaigndata-campaign.appspot.com/?t=upd&w=500&crop=true&file="
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.isScrollEnabled=true; self.tableView.register(UINib(nibName: "NewEventTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
@@ -81,13 +84,11 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
                     totalEventChallenges.child(key).observeSingleEvent(of : .value, with : {(Datasnapshot) in
                         let profEventChallengesDetailsDict = Datasnapshot.value as? [String : AnyObject] ?? [:]
                         for (key,value) in profEventChallengesDetailsDict{
-                            print("key"+key)
-                            print(value)
+                         
                             if "title" == key{
                                 self.animals.append(value as! String)
                                 
-                                print("est")
-                                print(value)
+                              
                                 self.tableView.reloadData()
                             }
                             if "desc" == key{
@@ -95,9 +96,18 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
                                 
                                  self.tableView.reloadData()
                             }
+                            if "pict" == key{
+                                                    
+                          
+                                                        
+                                
+                                self.eventImages.append(value as! String)
+                              
+                                self.tableView.reloadData()
+                                                       }
+                                                       
                             
-                            print(self.animals)
-                            print(self.eventDescrips)
+                           
                         }
                         
                     })
@@ -113,16 +123,24 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         return animals.count
         
       }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200.0;//Choose your custom row height
     }
-      
+    
+    
       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
            let cell:NewEventTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "cell") as! NewEventTableViewCell
 
                 // cell.EventName.backgroundColor = self.colors[indexPath.row]
                  cell.EventName.text = self.animals[indexPath.row]
         cell.EventDescription.text=self.eventDescrips[indexPath.row]
+   
+        let url = URL(string: self.eventImages[indexPath.row])
+        cell.EventImage.load(url: url!)
+        print(self.eventImages[indexPath.row])
+        
+        
                  return cell
       }
       
