@@ -45,8 +45,8 @@ class EventChallengesViewController: UIViewController,UICollectionViewDelegate, 
         self.eventDescripLabel.text=self.eventDescrip
         print(self.eventDescrip)
         self.eventDescripLabel.numberOfLines=8
-        self.challengesCollectionView.delegate=self
-        self.challengesCollectionView.dataSource=self
+//        self.challengesCollectionView.delegate=self
+  //      self.challengesCollectionView.dataSource=self
         eventChallengesList.observeSingleEvent(of : .value, with : {(Snapshot) in
         let eventChallengesListDict = Snapshot.value as? [String : AnyObject] ?? [:]
             for (key,value) in eventChallengesListDict{
