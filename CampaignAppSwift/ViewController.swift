@@ -13,6 +13,7 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
     var animals: [String] = []
     var eventDescrips: [String] = []
     var eventImages: [String] = []
+    var eventIds: [String] = []
    // let colors = [UIColor.blue, UIColor.yellow, UIColor.magenta, UIColor.red, UIColor.brown]
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -36,6 +37,10 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
     var finalEventImageUrl=""
     let screenHeight = UIScreen.main.bounds.height
     let scrollViewContentHeight = 1200 as CGFloat
+    var eventName = ""
+    var eventImageUrl = ""
+    var eventDescription = ""
+    var eventId = ""
     var url="https://campaigndata-campaign.appspot.com/?t=upd&w=500&crop=true&file="
     var imageEventUrl="https://campaigndata-campaign.appspot.com/?t=upd&w=500&crop=true&file="
     override func viewDidLoad() {
@@ -65,7 +70,6 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         let profEventChallenges=ref.child("profileeventchallenges").child("1000116942")
         let totalEventChallenges=ref.child("eventchallenges")
         
-       
         
         collid.observeSingleEvent(of : .value, with : {(Snapshot) in
             let value = Snapshot.value as? NSDictionary
@@ -109,6 +113,10 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
                                 
                                  self.tableView.reloadData()
                             }
+                            if "key" == key{
+                                self.eventIds.append(value as! String)
+                                self.tableView.reloadData()
+                            }
                             if "pict" == key{
                                                     
                           
@@ -132,6 +140,8 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
        
         
 }
+    
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yOffset = scrollView.contentOffset.y
 
@@ -154,15 +164,28 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         
       }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "profEventsToEventChallenges", sender: self)
+        self.eventName=self.animals[indexPath.row]
+        self.eventImageUrl=self.eventImages[indexPath.row]
+        self.eventDescription=self.eventDescrips[indexPath.row]
+        self.eventId=self.eventIds[indexPath.row]
+        self.performSegue(withIdentifier: "profEventsToEventChallenges", sender: indexPath.row)
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "profEventsToEventChallenges"){
+            let svc = segue.destination as! EventChallengesViewController
+            svc.eventName = self.eventName
+            svc.eventImageUrl = self.eventImageUrl
+            svc.eventDescrip = self.eventDescription
+            svc.eventId = self.eventId
+        }
+    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200.0;//Choose your custom row height
     }
     func tableView(_ tableView: UITableView, widthForRowAt indexPath: IndexPath) -> CGFloat {
         return self.scrollView.contentSize.width+1000;//Choose your custom row height
     }
+
     
       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
            let cell:NewEventTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "cell") as! NewEventTableViewCell
@@ -173,7 +196,7 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
    
         let url = URL(string: self.eventImages[indexPath.row])
         cell.EventImage.load(url: url!)
-        print(self.eventImages[indexPath.row])
+        
         
         
                  return cell

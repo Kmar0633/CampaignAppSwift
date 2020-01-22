@@ -11,6 +11,9 @@
 		8C1717FCF1604D87E959719D /* Pods_CampaignAppSwift_CampaignAppSwiftUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B40904C0F62BB9B3C966856 /* Pods_CampaignAppSwift_CampaignAppSwiftUITests.framework */; };
 		FC047C5A23D5A7580089A634 /* NewEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC047C5823D5A7580089A634 /* NewEventTableViewCell.swift */; };
 		FC047C5B23D5A7580089A634 /* NewEventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC047C5923D5A7580089A634 /* NewEventTableViewCell.xib */; };
+		FC047C5D23D6FA4D0089A634 /* EventChallengesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC047C5C23D6FA4D0089A634 /* EventChallengesViewController.swift */; };
+		FC54355423D826A900472293 /* NewChallengeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC54355223D826A900472293 /* NewChallengeCollectionViewCell.swift */; };
+		FC54355523D826A900472293 /* NewChallengeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC54355323D826A900472293 /* NewChallengeCollectionViewCell.xib */; };
 		FC5C619723CEEC84009BF145 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5C619623CEEC84009BF145 /* AppDelegate.swift */; };
 		FC5C619923CEEC84009BF145 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5C619823CEEC84009BF145 /* SceneDelegate.swift */; };
 		FC5C619B23CEEC84009BF145 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5C619A23CEEC84009BF145 /* ViewController.swift */; };
@@ -52,6 +55,9 @@
 		F129AA348067A7C1F732418D /* Pods-CampaignAppSwift-CampaignAppSwiftUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampaignAppSwift-CampaignAppSwiftUITests.debug.xcconfig"; path = "Target Support Files/Pods-CampaignAppSwift-CampaignAppSwiftUITests/Pods-CampaignAppSwift-CampaignAppSwiftUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		FC047C5823D5A7580089A634 /* NewEventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventTableViewCell.swift; sourceTree = "<group>"; };
 		FC047C5923D5A7580089A634 /* NewEventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewEventTableViewCell.xib; sourceTree = "<group>"; };
+		FC047C5C23D6FA4D0089A634 /* EventChallengesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventChallengesViewController.swift; sourceTree = "<group>"; };
+		FC54355223D826A900472293 /* NewChallengeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChallengeCollectionViewCell.swift; sourceTree = "<group>"; };
+		FC54355323D826A900472293 /* NewChallengeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewChallengeCollectionViewCell.xib; sourceTree = "<group>"; };
 		FC5C619323CEEC84009BF145 /* CampaignAppSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampaignAppSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC5C619623CEEC84009BF145 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC5C619823CEEC84009BF145 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -145,6 +151,7 @@
 		FC5C619523CEEC84009BF145 /* CampaignAppSwift */ = {
 			isa = PBXGroup;
 			children = (
+				FC047C5C23D6FA4D0089A634 /* EventChallengesViewController.swift */,
 				FC5C61C623CEFE16009BF145 /* GoogleService-Info.plist */,
 				FC5C619623CEEC84009BF145 /* AppDelegate.swift */,
 				FC5C619823CEEC84009BF145 /* SceneDelegate.swift */,
@@ -155,6 +162,8 @@
 				FC5C61A423CEEC85009BF145 /* Info.plist */,
 				FC047C5823D5A7580089A634 /* NewEventTableViewCell.swift */,
 				FC047C5923D5A7580089A634 /* NewEventTableViewCell.xib */,
+				FC54355223D826A900472293 /* NewChallengeCollectionViewCell.swift */,
+				FC54355323D826A900472293 /* NewChallengeCollectionViewCell.xib */,
 			);
 			path = CampaignAppSwift;
 			sourceTree = "<group>";
@@ -289,6 +298,7 @@
 				FC5C61A323CEEC85009BF145 /* LaunchScreen.storyboard in Resources */,
 				FC5C61C723CEFE16009BF145 /* GoogleService-Info.plist in Resources */,
 				FC5C61A023CEEC85009BF145 /* Assets.xcassets in Resources */,
+				FC54355523D826A900472293 /* NewChallengeCollectionViewCell.xib in Resources */,
 				FC5C619E23CEEC84009BF145 /* Main.storyboard in Resources */,
 				FC047C5B23D5A7580089A634 /* NewEventTableViewCell.xib in Resources */,
 			);
@@ -419,9 +429,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC5C619B23CEEC84009BF145 /* ViewController.swift in Sources */,
+				FC54355423D826A900472293 /* NewChallengeCollectionViewCell.swift in Sources */,
 				FC5C619723CEEC84009BF145 /* AppDelegate.swift in Sources */,
 				FC5C619923CEEC84009BF145 /* SceneDelegate.swift in Sources */,
 				FC047C5A23D5A7580089A634 /* NewEventTableViewCell.swift in Sources */,
+				FC047C5D23D6FA4D0089A634 /* EventChallengesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
