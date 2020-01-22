@@ -9,25 +9,27 @@
 import UIKit
 
 class EventChallengesViewController: UIViewController {
-    var test = ""
+   
+    @IBOutlet weak var eventImage: UIImageView!
+    @IBOutlet weak var eventNameLabel: UILabel!
+    var eventName = ""
+    var eventImageUrl = ""
     var value = "es"
+    @IBOutlet weak var eventDescripLabel: UILabel!
+    var eventDescrip = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("test")
-        print()
-        print(self.test)
+        self.eventNameLabel.text = self.eventName
+        let url = URL(string: self.eventImageUrl)
+        self.eventImage.load(url: url!)
+        self.eventDescripLabel.text=self.eventDescrip
+        self.eventDescripLabel.numberOfLines=8
+        print(eventImageUrl)
         // Do any additional setup after loading the view.
     }
     
 
-    func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-        if(identifier == "profEventsToEventChallenges"){
-           // segue_identifier is the viewController and storyBoard Reference segue identifier.
-            print("hello")
-            print(self.test)
-        }
-        return true;
-    }
+
     /*
     // MARK: - Navigation
 

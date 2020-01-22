@@ -36,6 +36,9 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
     var finalEventImageUrl=""
     let screenHeight = UIScreen.main.bounds.height
     let scrollViewContentHeight = 1200 as CGFloat
+    var eventName = ""
+    var eventImageUrl = ""
+    var eventDescription = ""
     var url="https://campaigndata-campaign.appspot.com/?t=upd&w=500&crop=true&file="
     var imageEventUrl="https://campaigndata-campaign.appspot.com/?t=upd&w=500&crop=true&file="
     override func viewDidLoad() {
@@ -156,14 +159,17 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         
       }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let eventName=self.animals[indexPath.row]
-        print("seguecomplete")
+        self.eventName=self.animals[indexPath.row]
+        self.eventImageUrl=self.eventImages[indexPath.row]
+        self.eventDescription=self.eventDescrips[indexPath.row]
         self.performSegue(withIdentifier: "profEventsToEventChallenges", sender: indexPath.row)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "profEventsToEventChallenges"){
             let svc = segue.destination as! EventChallengesViewController
-            svc.test = "dari halaman sebelumnya"
+            svc.eventName = self.eventName
+            svc.eventImageUrl = self.eventImageUrl
+            svc.eventDescrip = self.eventDescription
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -183,7 +189,7 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
    
         let url = URL(string: self.eventImages[indexPath.row])
         cell.EventImage.load(url: url!)
-        print(self.eventImages[indexPath.row])
+        
         
         
                  return cell
