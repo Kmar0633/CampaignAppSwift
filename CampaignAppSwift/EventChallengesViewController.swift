@@ -43,6 +43,7 @@ class EventChallengesViewController: UIViewController,UICollectionViewDelegate, 
         let url = URL(string: self.eventImageUrl)
         self.eventImage.load(url: url!)
         self.eventDescripLabel.text=self.eventDescrip
+        print(self.eventDescrip)
         self.eventDescripLabel.numberOfLines=8
         self.challengesCollectionView.delegate=self
         self.challengesCollectionView.dataSource=self
