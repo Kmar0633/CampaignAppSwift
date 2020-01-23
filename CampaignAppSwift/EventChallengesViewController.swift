@@ -7,9 +7,12 @@
 //
 
 import UIKit
-
-class EventChallengesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+import Firebase
+class EventChallengesViewController: UIViewController, UICollectionViewDataSource,
+UICollectionViewDelegate {
+    var eventChallengeImageVidUrls: [String] = []
    var items = ["1", "2", "3", "4", "5", "6"]
+     var challengeImgVidUrl = "https://campaigndata-campaign.appspot.com/?t=upd&w=500&crop=true&file="
     let reuseIdentifier = "cell"
     @IBOutlet weak var eventImage: UIImageView!
     @IBOutlet weak var eventNameLabel: UILabel!
@@ -17,22 +20,71 @@ class EventChallengesViewController: UIViewController, UICollectionViewDataSourc
     var eventName = ""
     var eventImageUrl = ""
     var value = "es"
+    var eventId = ""
     @IBOutlet weak var eventDescripLabel: UILabel!
     var eventDescrip = ""
+    var refProfile: FirebaseApp!
+    var ref: DatabaseReference!
   
-
+ var eventChallengesIds = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.eventNameLabel.text = self.eventName
       
 
-        let url = URL(string: self.eventImageUrl)
-        self.eventImage.load(url: url!)
+        let urlEventImage = URL(string: self.eventImageUrl)
+        self.eventImage.load(url: urlEventImage!)
         self.eventDescripLabel.text=self.eventDescrip
         self.eventDescripLabel.numberOfLines=8
-        print(eventImageUrl)
+        ref = Database.database().reference()
+        print(self.eventId)
+    //           let updates=ref.child("updates")
+     //   print(eventChallengesList)
+     //   print(updates)
+        
         // Do any additional setup after loading the view.
+        let eventChallengesList=ref.child("eventchallengeslist").child(self.eventId)
+                let updates=ref.child("updates")
+                
+                
+                let url = URL(string: self.eventImageUrl)
+                self.eventImage.load(url: url!)
+                self.eventDescripLabel.text=self.eventDescrip
+                print(self.eventDescrip)
+                self.eventDescripLabel.numberOfLines=8
+        //        self.challengesCollectionView.delegate=self
+          //      self.challengesCollectionView.dataSource=self
+                eventChallengesList.observeSingleEvent(of : .value, with : {(Snapshot) in
+                let eventChallengesListDict = Snapshot.value as? [String : AnyObject] ?? [:]
+                    for (key,value) in eventChallengesListDict{
+                        self.eventChallengesIds.append(key)
+                       
+                    }
+                   
+                    updates.observeSingleEvent(of: .value) { (DataSnapshot) in
+                        let update = DataSnapshot.value as? [String : AnyObject] ?? [:]
+                        for (key,value) in update{
+                            if self.eventChallengesIds.contains(key){
+                                updates.child(key).observeSingleEvent(of:  .value) { (DataSnapshot) in
+                                     let value2 = DataSnapshot.value as? NSDictionary
+                                    let challengePict = value2?["pict"] as? String ?? ""
+                                    updates.child(key).child("pict").child("pict1").observeSingleEvent(of: .value) { (DataSnapshot) in
+                                        let pictValue = DataSnapshot.value as? NSDictionary
+                                                                   let challengePict = pictValue?["attfile"] as? String ?? ""
+                                        self.eventChallengeImageVidUrls.append(self.challengeImgVidUrl+challengePict)
+                                        print(challengePict)
+                                    }
+                                    
+                                }
+                                
+                            }
+                        }
+                        
+                    }
+                        })
+                
+                
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

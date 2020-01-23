@@ -13,6 +13,7 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
     var animals: [String] = []
     var eventDescrips: [String] = []
     var eventImages: [String] = []
+    var eventId=""
    // let colors = [UIColor.blue, UIColor.yellow, UIColor.magenta, UIColor.red, UIColor.brown]
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -39,6 +40,7 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
     var eventName = ""
     var eventImageUrl = ""
     var eventDescription = ""
+    var eventIds: [String] = []
     var url="https://campaigndata-campaign.appspot.com/?t=upd&w=500&crop=true&file="
     var imageEventUrl="https://campaigndata-campaign.appspot.com/?t=upd&w=500&crop=true&file="
     override func viewDidLoad() {
@@ -122,6 +124,15 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
                               
                                 self.tableView.reloadData()
                                                        }
+                            if "key" == key{
+                                                                               
+                                                     
+                                                                                   
+                                                           
+                                                           self.eventIds.append(value as! String)
+                                                         
+                                                           self.tableView.reloadData()
+                                                                                  }
                                                        
                             
                            
@@ -163,6 +174,7 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         self.eventName=self.animals[indexPath.row]
         self.eventImageUrl=self.eventImages[indexPath.row]
         self.eventDescription=self.eventDescrips[indexPath.row]
+        self.eventId=self.eventIds[indexPath.row]
         self.performSegue(withIdentifier: "profEventsToEventChallenges", sender: indexPath.row)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -170,6 +182,7 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
             let svc = segue.destination as! EventChallengesViewController
             svc.eventName = self.eventName
             svc.eventImageUrl = self.eventImageUrl
+            svc.eventId = self.eventId
             svc.eventDescrip = self.eventDescription
         }
     }
