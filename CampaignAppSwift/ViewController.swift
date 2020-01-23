@@ -35,7 +35,7 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
      var number_of_total_events = 0
     var finalEventImageUrl=""
     let screenHeight = UIScreen.main.bounds.height
-    let scrollViewContentHeight = 1200 as CGFloat
+    var scrollViewContentHeight = 1200 as CGFloat
     var eventName = ""
     var eventImageUrl = ""
     var eventDescription = ""
@@ -44,12 +44,13 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.contentSize = CGSize(width:300, height:scrollViewContentHeight-90)
-       
+    
         scrollView.isScrollEnabled=true; self.tableView.register(UINib(nibName: "NewEventTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         self.tableView.delegate = self
         scrollView.layoutIfNeeded()
         scrollView.bounces = false
         tableView.bounces = false
+        
         self.tableView.frame.size = CGSize(width:300, height:self.tableView.contentSize.height+1000)
         scrollView.isScrollEnabled=true
      //   scrollView.contentSize = CGSize(width: scrollView.frame.size.height, height: self.view.frame.width )
