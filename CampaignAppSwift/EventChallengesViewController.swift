@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 class EventChallengesViewController: UIViewController, UICollectionViewDataSource,
-UICollectionViewDelegate {
+UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     var eventChallengeImageVidUrls: [String] = []
    var items: [String] = ["1", "2", "3", "4", "5"]
      var challengeImgVidUrl = "https://campaigndata-campaign.appspot.com/?t=upd&w=500&crop=true&file="
@@ -27,7 +27,18 @@ UICollectionViewDelegate {
     var ref: DatabaseReference!
   
  var eventChallengesIds = [String]()
-     
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
+        let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
+        let size:CGFloat = (self.challengeCollectionView.frame.size.width - space) / 3.0
+        
+        return CGSize(width: size+50, height: size+50)
+        
+    }
+
+
+  
     override func viewDidLoad() {
         super.viewDidLoad()
      //   self.challengeCollectionView.delegate=self
