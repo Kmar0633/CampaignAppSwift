@@ -45,6 +45,7 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
     var imageEventUrl="https://campaigndata-campaign.appspot.com/?t=upd&w=500&crop=true&file="
     override func viewDidLoad() {
         super.viewDidLoad()
+      
         scrollView.contentSize = CGSize(width:300, height:scrollViewContentHeight-90)
     
         scrollView.isScrollEnabled=true; self.tableView.register(UINib(nibName: "NewEventTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
