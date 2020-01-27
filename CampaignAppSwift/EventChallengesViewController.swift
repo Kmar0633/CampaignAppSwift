@@ -30,6 +30,8 @@ UICollectionViewDelegate {
      
     override func viewDidLoad() {
         super.viewDidLoad()
+     //   self.challengeCollectionView.delegate=self
+       //               self.challengeCollectionView.dataSource=self
         self.eventNameLabel.text = self.eventName
         let urlEventImage = URL(string: self.eventImageUrl)
         self.eventImage.load(url: urlEventImage!)
@@ -44,16 +46,14 @@ UICollectionViewDelegate {
         // Do any additional setup after loading the view.
         let eventChallengesList=ref.child("eventchallengeslist").child(self.eventId)
                 let updates=ref.child("updates")
-                
-                
+       
                 let url = URL(string: self.eventImageUrl)
                 self.eventImage.load(url: url!)
                 self.eventDescripLabel.text=self.eventDescrip
                 print(self.eventDescrip)
      
                 self.eventDescripLabel.numberOfLines=8
-        //        self.challengesCollectionView.delegate=self
-          //      self.challengesCollectionView.dataSource=self
+      
                 eventChallengesList.observeSingleEvent(of : .value, with : {(Snapshot) in
                 let eventChallengesListDict = Snapshot.value as? [String : AnyObject] ?? [:]
                     for (key,value) in eventChallengesListDict{
@@ -77,8 +77,7 @@ UICollectionViewDelegate {
                                                                    let challengePict = pictValue?["attfile"] as? String ?? ""
                                         
                                       self.items.append(challengePict)
-                                      
-                                        
+                                        self.challengeCollectionView.reloadData()
                                         }
 
                                     }

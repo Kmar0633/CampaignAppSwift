@@ -168,7 +168,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5p-Ul-rfo">
-                                        <rect key="frame" x="32" y="40" width="42" height="21"/>
+                                        <rect key="frame" x="32" y="63.5" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -248,6 +248,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="QWT-XK-YXQ"/>
                     <connections>
+                        <outlet property="challengeCollectionView" destination="CDi-ve-phX" id="KAs-gc-Aim"/>
                         <outlet property="eventDescripLabel" destination="7kx-XH-PL7" id="tYh-w8-0IM"/>
                         <outlet property="eventImage" destination="QAi-tC-bu3" id="B3D-DC-1Vh"/>
                         <outlet property="eventNameLabel" destination="r5p-Ul-rfo" id="bxy-8j-Kfd"/>
