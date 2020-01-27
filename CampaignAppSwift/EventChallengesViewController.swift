@@ -11,7 +11,7 @@ import Firebase
 class EventChallengesViewController: UIViewController, UICollectionViewDataSource,
 UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     var eventChallengeImageVidUrls: [String] = []
-   var items: [String] = ["1", "2", "3", "4", "5"]
+   var items: [String] = []
      var challengeImgVidUrl = "https://campaigndata-campaign.appspot.com/?t=upd&w=500&crop=true&file="
     let reuseIdentifier = "cell"
     @IBOutlet weak var eventImage: UIImageView!
@@ -87,7 +87,7 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
                                         let pictValue = DataSnapshot.value as? NSDictionary
                                                                    let challengePict = pictValue?["attfile"] as? String ?? ""
                                         
-                                      self.items.append(challengePict)
+                                        self.items.append(self.challengeImgVidUrl+challengePict)
                                         self.challengeCollectionView.reloadData()
                                         }
 
@@ -119,7 +119,9 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
         cell.challengeTitle.text = self.items[indexPath.item]
-        cell.backgroundColor = UIColor.cyan // make cell more visible in our example project
+        let url = URL(string: self.items[indexPath.row])
+        cell.challengeImage.load(url: url!)
+        //cell.backgroundColor = UIColor.cyan // make cell more visible in our example project
 
         return cell
     }
