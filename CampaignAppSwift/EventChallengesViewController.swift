@@ -165,6 +165,10 @@ self.challengeCollectionView.isScrollEnabled = false
         cell.challengeTitle.text = (self.eventChallengeEntities[indexPath.item].EventImageVidUrl)
         let url = URL(string: self.eventChallengeEntities[indexPath.row].EventImageVidUrl)
         cell.challengeImage.load(url: url!)
+            // var image: UIImage =
+        if(self.eventChallengeEntities[indexPath.item].isVid == true){
+        cell.playButton.image =  UIImage(named: "playIcon")!
+        }
         //cell.backgroundColor = UIColor.cyan // make cell more visible in our example project
 
         return cell

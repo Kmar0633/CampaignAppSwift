@@ -14,6 +14,7 @@
 		FC047C5D23D6FA4D0089A634 /* EventChallengesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC047C5C23D6FA4D0089A634 /* EventChallengesViewController.swift */; };
 		FC1F416723D990A800230C87 /* ChallengeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1F416623D990A800230C87 /* ChallengeCollectionViewCell.swift */; };
 		FC1F416B23DFF5C900230C87 /* EventChallengeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1F416A23DFF5C900230C87 /* EventChallengeEntity.swift */; };
+		FC1F416D23E018B800230C87 /* playIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = FC1F416C23E018B800230C87 /* playIcon.png */; };
 		FC5C619723CEEC84009BF145 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5C619623CEEC84009BF145 /* AppDelegate.swift */; };
 		FC5C619923CEEC84009BF145 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5C619823CEEC84009BF145 /* SceneDelegate.swift */; };
 		FC5C619B23CEEC84009BF145 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5C619A23CEEC84009BF145 /* ViewController.swift */; };
@@ -58,6 +59,7 @@
 		FC047C5C23D6FA4D0089A634 /* EventChallengesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventChallengesViewController.swift; sourceTree = "<group>"; };
 		FC1F416623D990A800230C87 /* ChallengeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeCollectionViewCell.swift; sourceTree = "<group>"; };
 		FC1F416A23DFF5C900230C87 /* EventChallengeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventChallengeEntity.swift; sourceTree = "<group>"; };
+		FC1F416C23E018B800230C87 /* playIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = playIcon.png; path = ../../../Downloads/playIcon.png; sourceTree = "<group>"; };
 		FC5C619323CEEC84009BF145 /* CampaignAppSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampaignAppSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC5C619623CEEC84009BF145 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC5C619823CEEC84009BF145 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 		FC5C619523CEEC84009BF145 /* CampaignAppSwift */ = {
 			isa = PBXGroup;
 			children = (
+				FC1F416C23E018B800230C87 /* playIcon.png */,
 				FC047C5C23D6FA4D0089A634 /* EventChallengesViewController.swift */,
 				FC5C61C623CEFE16009BF145 /* GoogleService-Info.plist */,
 				FC5C619623CEEC84009BF145 /* AppDelegate.swift */,
@@ -299,6 +302,7 @@
 				FC5C61C723CEFE16009BF145 /* GoogleService-Info.plist in Resources */,
 				FC5C61A023CEEC85009BF145 /* Assets.xcassets in Resources */,
 				FC5C619E23CEEC84009BF145 /* Main.storyboard in Resources */,
+				FC1F416D23E018B800230C87 /* playIcon.png in Resources */,
 				FC047C5B23D5A7580089A634 /* NewEventTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
