@@ -152,8 +152,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8nc-rD-iwo">
-                                <rect key="frame" x="0.0" y="24" width="414" height="784"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" bounces="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8nc-rD-iwo">
+                                <rect key="frame" x="10" y="29" width="394" height="824"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QAi-tC-bu3">
                                         <rect key="frame" x="16" y="69" width="347" height="268"/>
@@ -168,25 +168,30 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5p-Ul-rfo">
-                                        <rect key="frame" x="32" y="63.5" width="42" height="21"/>
+                                        <rect key="frame" x="32" y="46" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Challenges" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Noy-a0-ElX">
+                                        <rect key="frame" x="16" y="447" width="88" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CDi-ve-phX">
-                                        <rect key="frame" x="16" y="499" width="347" height="273"/>
+                                        <rect key="frame" x="8" y="503" width="378" height="305"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="5" id="v4N-2J-I6f">
+                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="5" id="v4N-2J-I6f">
                                             <size key="itemSize" width="200" height="200"/>
-                                            <size key="estimatedItemSize" width="200" height="100"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="10" minY="10" maxX="0.0" maxY="10"/>
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="q5A-9v-hkd" customClass="ChallengeCollectionViewCell" customModule="CampaignAppSwift" customModuleProvider="target">
-                                                <rect key="frame" x="78.5" y="10" width="200" height="200"/>
+                                                <rect key="frame" x="94" y="10" width="200" height="200"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="HWP-me-8zb">
                                                     <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
@@ -216,12 +221,6 @@
                                             <outlet property="delegate" destination="zSk-sM-fJH" id="ehl-Xc-1mV"/>
                                         </connections>
                                     </collectionView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Challenges" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Noy-a0-ElX">
-                                        <rect key="frame" x="16" y="447" width="88" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="QAi-tC-bu3" firstAttribute="leading" secondItem="7kx-XH-PL7" secondAttribute="leading" id="3H5-s2-98C"/>
@@ -232,7 +231,7 @@
                                     <constraint firstItem="7kx-XH-PL7" firstAttribute="leading" secondItem="Noy-a0-ElX" secondAttribute="leading" constant="-8" id="Qvs-uF-5Fo"/>
                                     <constraint firstItem="imE-gm-aHR" firstAttribute="trailing" secondItem="Noy-a0-ElX" secondAttribute="trailing" constant="259" id="Vjl-LQ-vAg"/>
                                     <constraint firstItem="QAi-tC-bu3" firstAttribute="top" secondItem="r5p-Ul-rfo" secondAttribute="bottom" constant="27" id="ZFO-RV-c5u"/>
-                                    <constraint firstAttribute="bottom" secondItem="Noy-a0-ElX" secondAttribute="bottom" constant="332" id="ZkI-Ub-ast"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Noy-a0-ElX" secondAttribute="bottom" constant="339" id="ZkI-Ub-ast"/>
                                     <constraint firstItem="7kx-XH-PL7" firstAttribute="centerY" secondItem="8nc-rD-iwo" secondAttribute="centerY" id="Zkc-ZG-MaZ"/>
                                     <constraint firstItem="r5p-Ul-rfo" firstAttribute="leading" secondItem="imE-gm-aHR" secondAttribute="leading" constant="32" id="kYZ-e7-4l9"/>
                                     <constraint firstItem="7kx-XH-PL7" firstAttribute="top" secondItem="QAi-tC-bu3" secondAttribute="bottom" constant="8" id="pcr-nA-XfQ"/>
@@ -253,8 +252,11 @@
                         <viewLayoutGuide key="safeArea" id="buB-kY-6i7"/>
                     </view>
                     <navigationItem key="navigationItem" id="QWT-XK-YXQ"/>
+                    <size key="freeformSize" width="414" height="896"/>
                     <connections>
                         <outlet property="challengeCollectionView" destination="CDi-ve-phX" id="KAs-gc-Aim"/>
+                        <outlet property="eventChallengebottomConstraint" destination="ZkI-Ub-ast" id="xuJ-d4-Y2M"/>
+                        <outlet property="eventChallengesScroller" destination="8nc-rD-iwo" id="mnB-gi-gnq"/>
                         <outlet property="eventDescripLabel" destination="7kx-XH-PL7" id="tYh-w8-0IM"/>
                         <outlet property="eventImage" destination="QAi-tC-bu3" id="B3D-DC-1Vh"/>
                         <outlet property="eventNameLabel" destination="r5p-Ul-rfo" id="bxy-8j-Kfd"/>

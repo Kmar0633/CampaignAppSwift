@@ -11,21 +11,26 @@ import Firebase
 class EventChallengesViewController: UIViewController, UICollectionViewDataSource,
 UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     var eventChallengeImageVidUrls: [String] = []
+    let screenHeight = UIScreen.main.bounds.height
+    var scrollViewContentHeight = 1200 as CGFloat
    var items: [String] = []
      var challengeImgVidUrl = "https://campaigndata-campaign.appspot.com/?t=upd&w=500&crop=true&file="
     let reuseIdentifier = "cell"
     @IBOutlet weak var eventImage: UIImageView!
     @IBOutlet weak var eventNameLabel: UILabel!
     @IBOutlet weak var challengeCollectionView: UICollectionView!
+    @IBOutlet weak var eventChallengesScroller: UIScrollView!
     var eventName = ""
     var eventImageUrl = ""
     var value = "es"
     var eventId = ""
+    var constantEventChallengesScreenHeight = 332
     @IBOutlet weak var eventDescripLabel: UILabel!
     var eventDescrip = ""
     var refProfile: FirebaseApp!
     var ref: DatabaseReference!
-  
+    @IBOutlet weak var eventChallengebottomConstraint: NSLayoutConstraint!
+    
  var eventChallengesIds = [String]()
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -41,13 +46,25 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
   
     override func viewDidLoad() {
         super.viewDidLoad()
-     //   self.challengeCollectionView.delegate=self
+        
+        self.eventChallengesScroller.contentSize = CGSize(width:400, height:scrollViewContentHeight+1000)
+         self.challengeCollectionView.frame.size = CGSize(width:400, height:self.challengeCollectionView.contentSize.height+10000)
+self.challengeCollectionView.isScrollEnabled = false
+        
+        self.eventChallengesScroller.isScrollEnabled=true
+        
+        
+     //  self. self.challengeCollectionView.delegate=self
        //               self.challengeCollectionView.dataSource=self
+        
         self.eventNameLabel.text = self.eventName
         let urlEventImage = URL(string: self.eventImageUrl)
         self.eventImage.load(url: urlEventImage!)
         self.eventDescripLabel.text=self.eventDescrip
         self.eventDescripLabel.numberOfLines=8
+        self.eventChallengesScroller.layoutIfNeeded()
+        self.eventChallengesScroller.bounces=false
+        self.challengeCollectionView.bounces=false
         ref = Database.database().reference()
         print(self.eventId)
     //           let updates=ref.child("updates")
@@ -89,8 +106,20 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
                                         
                                         self.items.append(self.challengeImgVidUrl+challengePict)
                                         self.challengeCollectionView.reloadData()
+                                        if(self.items.count>2){
+                                            if(self.items.count%2==0){
+                                                var const=self.items.count - 1
+                                                self.eventChallengebottomConstraint.constant=CGFloat(self.constantEventChallengesScreenHeight+const*25)
+                                                
+                                            }
+                                            else{
+                                                self.eventChallengebottomConstraint.constant=CGFloat(self.constantEventChallengesScreenHeight+self.items.count*25)
+                                            }
+                                            
                                         }
-
+                                        }
+                                    
+                                    
                                     }
 
                                 }
@@ -135,6 +164,30 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
         // Pass the selected object to the new view controller.
     }
     */
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let yOffset = scrollView.contentOffset.y
+
+        if scrollView == self.eventChallengesScroller {
+            if yOffset >= scrollViewContentHeight - screenHeight {
+                scrollView.isScrollEnabled = false
+                self.challengeCollectionView.isScrollEnabled = true
+            }
+        }
+
+        if scrollView == self.challengeCollectionView {
+            if yOffset <= 0 {
+                self.eventChallengesScroller.isScrollEnabled = true
+                self.challengeCollectionView.isScrollEnabled = false
+            }
+        }
+    }
+    func collectionView(_ collectionView: UICollectionView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+           return 200.0;//Choose your custom row height
+       }
+       func collectionView(_ tableView: UICollectionView, widthForRowAt indexPath: IndexPath) -> CGFloat {
+        return self.eventChallengesScroller.contentSize.width+1000;//Choose your custom row height
+       }
+
     func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
       
