@@ -13,7 +13,7 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     var eventChallengeImageVidUrls: [String] = []
     let screenHeight = UIScreen.main.bounds.height
     var scrollViewContentHeight = 1200 as CGFloat
-   var items: [String] = []
+   var eventChallengeEntities: [EventChallengeEntity] = []
      var challengeImgVidUrl = "https://campaigndata-campaign.appspot.com/?t=upd&w=500&crop=true&file="
     let reuseIdentifier = "cell"
     @IBOutlet weak var eventImage: UIImageView!
@@ -21,10 +21,12 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var challengeCollectionView: UICollectionView!
     @IBOutlet weak var eventChallengesScroller: UIScrollView!
     var eventName = ""
+//    let playButtonVidIcon = #imageLiteral(resourceName: "playIcon.png")
     var eventImageUrl = ""
     var value = "es"
     var eventId = ""
     var constantEventChallengesScreenHeight = 332
+  
     @IBOutlet weak var eventDescripLabel: UILabel!
     var eventDescrip = ""
     var refProfile: FirebaseApp!
@@ -103,17 +105,30 @@ self.challengeCollectionView.isScrollEnabled = false
                                     updates.child(key).child("pict").child("pict1").observeSingleEvent(of: .value) { (DataSnapshot) in
                                         let pictValue = DataSnapshot.value as? NSDictionary
                                                                    let challengePict = pictValue?["attfile"] as? String ?? ""
+                                        let isVidValue = DataSnapshot.value as? NSDictionary
+                                        let isVid = isVidValue?["is_video"] as? String ?? ""
+                                       
+                                        var eventChallengeEntity = EventChallengeEntity()
+                                        eventChallengeEntity.EventImageVidUrl = self.challengeImgVidUrl+challengePict
+                                        if(isVid == "1"){
+                                            eventChallengeEntity.IsVid = true
+                                        }
+                                        if(isVid == "0"){
+                                            eventChallengeEntity.IsVid = false
+                                        }
+                                        print(eventChallengeEntity.EventImageVidUrl)
+                                        print(eventChallengeEntity.IsVid)
                                         
-                                        self.items.append(self.challengeImgVidUrl+challengePict)
+                                         self.eventChallengeEntities.append(eventChallengeEntity)
                                         self.challengeCollectionView.reloadData()
-                                        if(self.items.count>2){
-                                            if(self.items.count%2==0){
-                                                var const=self.items.count - 1
+                                        if(self.eventChallengeEntities.count>2){
+                                            if(self.eventChallengeEntities.count%2==0){
+                                                var const=self.eventChallengeEntities.count - 1
                                                 self.eventChallengebottomConstraint.constant=CGFloat(self.constantEventChallengesScreenHeight+const*25)
                                                 
                                             }
                                             else{
-                                                self.eventChallengebottomConstraint.constant=CGFloat(self.constantEventChallengesScreenHeight+self.items.count*25)
+                                                self.eventChallengebottomConstraint.constant=CGFloat(self.constantEventChallengesScreenHeight+self.eventChallengeEntities.count*25)
                                             }
                                             
                                         }
@@ -137,7 +152,7 @@ self.challengeCollectionView.isScrollEnabled = false
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.items.count
+        return self.eventChallengeEntities.count
     }
 
     // make a cell for each cell index path
@@ -147,8 +162,8 @@ self.challengeCollectionView.isScrollEnabled = false
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! ChallengeCollectionViewCell
 
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
-        cell.challengeTitle.text = self.items[indexPath.item]
-        let url = URL(string: self.items[indexPath.row])
+        cell.challengeTitle.text = (self.eventChallengeEntities[indexPath.item].EventImageVidUrl)
+        let url = URL(string: self.eventChallengeEntities[indexPath.row].EventImageVidUrl)
         cell.challengeImage.load(url: url!)
         //cell.backgroundColor = UIColor.cyan // make cell more visible in our example project
 

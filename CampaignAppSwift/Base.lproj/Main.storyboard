@@ -168,7 +168,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5p-Ul-rfo">
-                                        <rect key="frame" x="32" y="46" width="42" height="21"/>
+                                        <rect key="frame" x="32" y="40" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -208,11 +208,16 @@
                                                             <rect key="frame" x="0.0" y="8" width="200" height="192"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sWq-aJ-nt3">
+                                                            <rect key="frame" x="77" y="74" width="47" height="53"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
                                                     </subviews>
                                                 </collectionViewCellContentView>
                                                 <connections>
                                                     <outlet property="challengeImage" destination="ENp-69-YdW" id="QE0-e4-ikQ"/>
                                                     <outlet property="challengeTitle" destination="Rn3-GX-zZJ" id="jUS-Qf-eeF"/>
+                                                    <outlet property="playButton" destination="sWq-aJ-nt3" id="nFj-30-8ND"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
@@ -231,7 +236,7 @@
                                     <constraint firstItem="7kx-XH-PL7" firstAttribute="leading" secondItem="Noy-a0-ElX" secondAttribute="leading" constant="-8" id="Qvs-uF-5Fo"/>
                                     <constraint firstItem="imE-gm-aHR" firstAttribute="trailing" secondItem="Noy-a0-ElX" secondAttribute="trailing" constant="259" id="Vjl-LQ-vAg"/>
                                     <constraint firstItem="QAi-tC-bu3" firstAttribute="top" secondItem="r5p-Ul-rfo" secondAttribute="bottom" constant="27" id="ZFO-RV-c5u"/>
-                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Noy-a0-ElX" secondAttribute="bottom" constant="339" id="ZkI-Ub-ast"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Noy-a0-ElX" secondAttribute="bottom" constant="1339" id="ZkI-Ub-ast"/>
                                     <constraint firstItem="7kx-XH-PL7" firstAttribute="centerY" secondItem="8nc-rD-iwo" secondAttribute="centerY" id="Zkc-ZG-MaZ"/>
                                     <constraint firstItem="r5p-Ul-rfo" firstAttribute="leading" secondItem="imE-gm-aHR" secondAttribute="leading" constant="32" id="kYZ-e7-4l9"/>
                                     <constraint firstItem="7kx-XH-PL7" firstAttribute="top" secondItem="QAi-tC-bu3" secondAttribute="bottom" constant="8" id="pcr-nA-XfQ"/>

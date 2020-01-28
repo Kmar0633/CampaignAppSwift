@@ -9,6 +9,7 @@
 import UIKit
 
 class ChallengeCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var playButton: UIImageView!
     @IBOutlet weak var challengeTitle: UILabel!
     @IBOutlet weak var challengeImage: UIImageView!
 }
