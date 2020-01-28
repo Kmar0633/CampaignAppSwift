@@ -21,6 +21,7 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var challengeCollectionView: UICollectionView!
     @IBOutlet weak var eventChallengesScroller: UIScrollView!
     var eventName = ""
+    var profileId = "1000116942"
 //    let playButtonVidIcon = #imageLiteral(resourceName: "playIcon.png")
     var eventImageUrl = ""
     var value = "es"
@@ -34,7 +35,7 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var eventChallengebottomConstraint: NSLayoutConstraint!
     
  var eventChallengesIds = [String]()
-    
+    var challengesActionsUserTakes = [String]()
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
         let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
@@ -75,6 +76,7 @@ self.challengeCollectionView.isScrollEnabled = false
         
         // Do any additional setup after loading the view.
         let eventChallengesList=ref.child("eventchallengeslist").child(self.eventId)
+        let profChallengesAction=ref.child("profilechallengesactions").child(profileId)
                 let updates=ref.child("updates")
        
                 let url = URL(string: self.eventImageUrl)
@@ -84,6 +86,12 @@ self.challengeCollectionView.isScrollEnabled = false
      
                 self.eventDescripLabel.numberOfLines=8
       
+        profChallengesAction.observeSingleEvent(of: .value) { (DataSnapshot) in
+            let profileChallengesActions = DataSnapshot.value as? [String : AnyObject] ?? [:]
+            for i in profileChallengesActions{
+                self.challengesActionsUserTakes.append(i.key)
+            }
+        }
                 eventChallengesList.observeSingleEvent(of : .value, with : {(Snapshot) in
                 let eventChallengesListDict = Snapshot.value as? [String : AnyObject] ?? [:]
                     for (key,value) in eventChallengesListDict{
@@ -102,6 +110,7 @@ self.challengeCollectionView.isScrollEnabled = false
                                 updates.child(key).observeSingleEvent(of:  .value) { (DataSnapshot) in
                                      let value2 = DataSnapshot.value as? NSDictionary
                                     let challengePict = value2?["pict"] as? String ?? ""
+                                    let updateId = value2?["updates_id"] as? String ?? ""
                                     updates.child(key).child("pict").child("pict1").observeSingleEvent(of: .value) { (DataSnapshot) in
                                         let pictValue = DataSnapshot.value as? NSDictionary
                                                                    let challengePict = pictValue?["attfile"] as? String ?? ""
@@ -109,6 +118,11 @@ self.challengeCollectionView.isScrollEnabled = false
                                         let isVid = isVidValue?["is_video"] as? String ?? ""
                                        
                                         var eventChallengeEntity = EventChallengeEntity()
+                                        
+                                        eventChallengeEntity.UpdateId = updateId
+                                        if(self.challengesActionsUserTakes.contains(eventChallengeEntity.UpdateId)){
+                                            eventChallengeEntity.IsAttended = true
+                                        }
                                         eventChallengeEntity.EventImageVidUrl = self.challengeImgVidUrl+challengePict
                                         if(isVid == "1"){
                                             eventChallengeEntity.IsVid = true
@@ -116,9 +130,8 @@ self.challengeCollectionView.isScrollEnabled = false
                                         if(isVid == "0"){
                                             eventChallengeEntity.IsVid = false
                                         }
-                                        print(eventChallengeEntity.EventImageVidUrl)
-                                        print(eventChallengeEntity.IsVid)
                                         
+                                        print(eventChallengeEntity.IsAttended)
                                          self.eventChallengeEntities.append(eventChallengeEntity)
                                         self.challengeCollectionView.reloadData()
                                         if(self.eventChallengeEntities.count>2){
@@ -168,6 +181,12 @@ self.challengeCollectionView.isScrollEnabled = false
             // var image: UIImage =
         if(self.eventChallengeEntities[indexPath.item].isVid == true){
         cell.playButton.image =  UIImage(named: "playIcon")!
+        }
+        
+        if(self.eventChallengeEntities[indexPath.item].IsAttended == true){
+            cell.challengeImage.setImageColor(color: UIColor.lightGray)
+            print("est")
+            cell.challengeImage.tintColor = .blue
         }
         //cell.backgroundColor = UIColor.cyan // make cell more visible in our example project
 

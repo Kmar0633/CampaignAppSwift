@@ -221,6 +221,7 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
 
 
 extension UIImageView {
+    
       func load(url: URL) {
           DispatchQueue.global().async { [weak self] in
               if let data = try? Data(contentsOf: url) {
@@ -233,3 +234,10 @@ extension UIImageView {
           }
       }
     }
+extension UIImageView {
+  func setImageColor(color: UIColor) {
+    let templateImage = self.image?.withRenderingMode(.alwaysTemplate)
+    self.image = templateImage
+    self.tintColor = color
+  }
+}

@@ -11,6 +11,8 @@ import UIKit
 class EventChallengeEntity {
     var eventImageVidUrl: String = ""
     var isVid: Bool = false
+    var updateId: String = ""
+    var isAttended: Bool = false
     var EventImageVidUrl: String {
         get{
             return eventImageVidUrl
@@ -26,6 +28,24 @@ class EventChallengeEntity {
         }
         set{
             isVid = newValue
+        }
+        
+    }
+    var IsAttended: Bool {
+        get{
+            return isAttended
+        }
+        set{
+            isAttended = newValue
+        }
+        
+    }
+    var UpdateId: String {
+        get{
+            return updateId
+        }
+        set{
+            updateId = newValue
         }
         
     }
