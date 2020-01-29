@@ -15,6 +15,7 @@
 		FC1F416723D990A800230C87 /* ChallengeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1F416623D990A800230C87 /* ChallengeCollectionViewCell.swift */; };
 		FC1F416B23DFF5C900230C87 /* EventChallengeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1F416A23DFF5C900230C87 /* EventChallengeEntity.swift */; };
 		FC1F416D23E018B800230C87 /* playIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = FC1F416C23E018B800230C87 /* playIcon.png */; };
+		FC1F416F23E1280000230C87 /* ChallengeActionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1F416E23E1280000230C87 /* ChallengeActionsViewController.swift */; };
 		FC5C619723CEEC84009BF145 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5C619623CEEC84009BF145 /* AppDelegate.swift */; };
 		FC5C619923CEEC84009BF145 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5C619823CEEC84009BF145 /* SceneDelegate.swift */; };
 		FC5C619B23CEEC84009BF145 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5C619A23CEEC84009BF145 /* ViewController.swift */; };
@@ -60,6 +61,7 @@
 		FC1F416623D990A800230C87 /* ChallengeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeCollectionViewCell.swift; sourceTree = "<group>"; };
 		FC1F416A23DFF5C900230C87 /* EventChallengeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventChallengeEntity.swift; sourceTree = "<group>"; };
 		FC1F416C23E018B800230C87 /* playIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = playIcon.png; path = ../../../Downloads/playIcon.png; sourceTree = "<group>"; };
+		FC1F416E23E1280000230C87 /* ChallengeActionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeActionsViewController.swift; sourceTree = "<group>"; };
 		FC5C619323CEEC84009BF145 /* CampaignAppSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampaignAppSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC5C619623CEEC84009BF145 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC5C619823CEEC84009BF145 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				FC047C5923D5A7580089A634 /* NewEventTableViewCell.xib */,
 				FC1F416623D990A800230C87 /* ChallengeCollectionViewCell.swift */,
 				FC1F416A23DFF5C900230C87 /* EventChallengeEntity.swift */,
+				FC1F416E23E1280000230C87 /* ChallengeActionsViewController.swift */,
 			);
 			path = CampaignAppSwift;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 			files = (
 				FC1F416723D990A800230C87 /* ChallengeCollectionViewCell.swift in Sources */,
 				FC5C619B23CEEC84009BF145 /* ViewController.swift in Sources */,
+				FC1F416F23E1280000230C87 /* ChallengeActionsViewController.swift in Sources */,
 				FC5C619723CEEC84009BF145 /* AppDelegate.swift in Sources */,
 				FC1F416B23DFF5C900230C87 /* EventChallengeEntity.swift in Sources */,
 				FC5C619923CEEC84009BF145 /* SceneDelegate.swift in Sources */,

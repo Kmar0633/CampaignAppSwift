@@ -167,7 +167,24 @@ self.challengeCollectionView.isScrollEnabled = false
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.eventChallengeEntities.count
     }
-
+    
+func collectionView(_ tableView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        self.eventName=self.animals[indexPath.item]
+//          self.eventImageUrl=self.eventImages[indexPath.item]
+//          self.eventDescription=self.eventDescrips[indexPath.item]
+//          self.eventId=self.eventIds[indexPath.item]
+         self.performSegue(withIdentifier: "toChallengeActions", sender: indexPath.item)
+      }
+    
+ //   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+   //        if(segue.identifier == "profEventsToEventChallenges"){
+//               let svc = segue.destination as! EventChallengesViewController
+//               svc.eventName = self.eventName
+//               svc.eventImageUrl = self.eventImageUrl
+//               svc.eventId = self.eventIdBNU
+//               svc.eventDescrip = self.eventDescription
+ //          }
+ //      }
     // make a cell for each cell index path
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
@@ -177,16 +194,18 @@ self.challengeCollectionView.isScrollEnabled = false
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
         cell.challengeTitle.text = (self.eventChallengeEntities[indexPath.item].EventImageVidUrl)
         let url = URL(string: self.eventChallengeEntities[indexPath.row].EventImageVidUrl)
+       
         cell.challengeImage.load(url: url!)
+        
             // var image: UIImage =
         if(self.eventChallengeEntities[indexPath.item].isVid == true){
         cell.playButton.image =  UIImage(named: "playIcon")!
         }
         
         if(self.eventChallengeEntities[indexPath.item].IsAttended == true){
-            cell.challengeImage.setImageColor(color: UIColor.lightGray)
-            print("est")
-            cell.challengeImage.tintColor = .blue
+            let img = cell.challengeImage.image?.withRenderingMode(.alwaysTemplate)
+            cell.challengeImage.image=img
+            cell.challengeImage.tintColor = UIColor.yellow
         }
         //cell.backgroundColor = UIColor.cyan // make cell more visible in our example project
 
@@ -197,10 +216,7 @@ self.challengeCollectionView.isScrollEnabled = false
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
+
     */
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yOffset = scrollView.contentOffset.y
