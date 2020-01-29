@@ -13,6 +13,27 @@ class EventChallengeEntity {
     var isVid: Bool = false
     var updateId: String = ""
     var isAttended: Bool = false
+    var challengeTitle = ""
+    var challengeDesc = ""
+    var ChallengeTitle: String {
+        get{
+            return challengeTitle
+        }
+        set{
+            challengeTitle = newValue
+        }
+        
+    }
+    var ChallengeDesc: String {
+        get{
+            return challengeDesc
+        }
+        set{
+            challengeDesc = newValue
+        }
+        
+    }
+    
     var EventImageVidUrl: String {
         get{
             return eventImageVidUrl

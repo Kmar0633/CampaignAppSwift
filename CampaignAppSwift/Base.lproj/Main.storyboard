@@ -11,7 +11,7 @@
         <!--Challenge Actions View Controller-->
         <scene sceneID="0bx-hf-u3D">
             <objects>
-                <viewController id="x17-xm-F8X" customClass="ChallengeActionsViewController" customModule="CampaignAppSwift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="x17-xm-F8X" customClass="ChallengeActionsViewController" customModule="CampaignAppSwift" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cm7-jn-rsK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

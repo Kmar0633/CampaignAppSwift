@@ -9,10 +9,14 @@
 import UIKit
 
 class ChallengeActionsViewController: UIViewController {
-
+var challengeTitle = ""
+var challengeDesc = ""
+var challengeImageVidUrl = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print(challengeTitle)
+        print(challengeDesc)
         // Do any additional setup after loading the view.
     }
     

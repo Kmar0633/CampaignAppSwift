@@ -20,6 +20,7 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var eventNameLabel: UILabel!
     @IBOutlet weak var challengeCollectionView: UICollectionView!
     @IBOutlet weak var eventChallengesScroller: UIScrollView!
+    
     var eventName = ""
     var profileId = "1000116942"
 //    let playButtonVidIcon = #imageLiteral(resourceName: "playIcon.png")
@@ -33,7 +34,9 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     var refProfile: FirebaseApp!
     var ref: DatabaseReference!
     @IBOutlet weak var eventChallengebottomConstraint: NSLayoutConstraint!
-    
+    var challengeTitle = ""
+    var challengeDesc = ""
+    var challengeImageVidUrl = ""
  var eventChallengesIds = [String]()
     var challengesActionsUserTakes = [String]()
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -111,16 +114,24 @@ self.challengeCollectionView.isScrollEnabled = false
                                      let value2 = DataSnapshot.value as? NSDictionary
                                     let challengePict = value2?["pict"] as? String ?? ""
                                     let updateId = value2?["updates_id"] as? String ?? ""
-                                    updates.child(key).child("pict").child("pict1").observeSingleEvent(of: .value) { (DataSnapshot) in
+                                   let updateTitle = value2?["title"] as? String ?? ""
+                                   let updateDesc = value2?["desc"] as? String ?? ""
+                                updates.child(key).child("pict").child("pict1").observeSingleEvent(of: .value) { (DataSnapshot) in
                                         let pictValue = DataSnapshot.value as? NSDictionary
                                                                    let challengePict = pictValue?["attfile"] as? String ?? ""
                                         let isVidValue = DataSnapshot.value as? NSDictionary
+                                        
                                         let isVid = isVidValue?["is_video"] as? String ?? ""
                                        
                                         var eventChallengeEntity = EventChallengeEntity()
                                         
-                                        eventChallengeEntity.UpdateId = updateId
-                                        if(self.challengesActionsUserTakes.contains(eventChallengeEntity.UpdateId)){
+                                    eventChallengeEntity.ChallengeTitle = updateTitle
+                                    
+                                    eventChallengeEntity.ChallengeDesc = updateDesc
+                                    
+                                    eventChallengeEntity.UpdateId = updateId
+                                       
+                                    if(self.challengesActionsUserTakes.contains(eventChallengeEntity.UpdateId)){
                                             eventChallengeEntity.IsAttended = true
                                         }
                                         eventChallengeEntity.EventImageVidUrl = self.challengeImgVidUrl+challengePict
@@ -169,22 +180,24 @@ self.challengeCollectionView.isScrollEnabled = false
     }
     
 func collectionView(_ tableView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        self.eventName=self.animals[indexPath.item]
-//          self.eventImageUrl=self.eventImages[indexPath.item]
+    self.challengeTitle=self.eventChallengeEntities[indexPath.item].ChallengeTitle
+    self.challengeDesc=self.eventChallengeEntities[indexPath.item].ChallengeDesc
+    self.challengeImageVidUrl=self.eventChallengeEntities[indexPath.item].EventImageVidUrl
 //          self.eventDescription=self.eventDescrips[indexPath.item]
 //          self.eventId=self.eventIds[indexPath.item]
          self.performSegue(withIdentifier: "toChallengeActions", sender: indexPath.item)
       }
     
- //   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   //        if(segue.identifier == "profEventsToEventChallenges"){
-//               let svc = segue.destination as! EventChallengesViewController
-//               svc.eventName = self.eventName
+   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       if(segue.identifier == "toChallengeActions"){
+               let svc = segue.destination as! ChallengeActionsViewController
+        svc.challengeTitle = self.challengeTitle
+        svc.challengeDesc = self.challengeDesc
 //               svc.eventImageUrl = self.eventImageUrl
 //               svc.eventId = self.eventIdBNU
 //               svc.eventDescrip = self.eventDescription
- //          }
- //      }
+          }
+      }
     // make a cell for each cell index path
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
