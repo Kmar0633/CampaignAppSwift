@@ -11,9 +11,25 @@ import AVFoundation
 import MediaPlayer
 import AVKit
 import Firebase 
-class ChallengeActionsViewController: UIViewController {
+class ChallengeActionsViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.challengeActionEntities.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: ChallengeActionTableViewCell = self.challengeActionsTableView.dequeueReusableCell(withIdentifier: "cell1") as! ChallengeActionTableViewCell
+        cell.challengeActionTitle.text = self.challengeActionEntities[indexPath.row].ActionTitle
+        cell.challengeActionDesc.text = self.challengeActionEntities[indexPath.row].ActionDesc
+        let url = URL(string: self.challengeActionEntities[indexPath.row].ActionImageUrl)
+        
+        cell.challengeActionImage.load(url: url!)
+        return cell
+        
+    }
+    
 var challengeTitle = ""
 var challengeDesc = ""
+    var actionImageUrl = "https://campaigndata-campaign.appspot.com/?t=act&w=500&crop=true&file="
     var challengeActionTitles: [String] = []
     var challengeActionEntities: [ChallengeActionEntity] = []
 var challengeImageVidUrl = ""
@@ -28,12 +44,18 @@ var challengeId = ""
     @IBOutlet weak var challengeDescLabel: UILabel!
     var refProfile: FirebaseApp!
        var ref: DatabaseReference!
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200.0;//Choose your custom row height
+    }
     override func viewDidLoad() {
         
         super.viewDidLoad()
         challengTitleLabel.text = self.challengeTitle
         challengeDescLabel.text = self.challengeDesc
         ref = Database.database().reference()
+        self.challengeActionsTableView.delegate=self
+    self.challengeActionsTableView.dataSource=self
+        
         let url = URL(string: challengeImageVidUrl)
         let actions = ref.child("profilechallengesactions").child("1000116942").child(self.challengeId)
         actions.observeSingleEvent(of: .value) { (DataSnapshot) in
@@ -49,7 +71,14 @@ var challengeId = ""
                    let actionTitle = actionDict?["title"] as? String ?? ""
                     let actionDesc = actionDict?["descrip"] as? String ?? ""
                    let actionImgUrl = actionDict?["pict"] as? String ?? ""
-                   print(actionDesc)
+                   var challengeActionEntity = ChallengeActionEntity()
+                    challengeActionEntity.ActionDesc = actionDesc
+                    challengeActionEntity.ActionImageUrl = self.actionImageUrl+actionImgUrl
+                    challengeActionEntity.ActionTitle = actionTitle
+                    self.challengeActionEntities.append(challengeActionEntity)
+                    print(actionImgUrl)
+                    self.challengeActionsTableView.reloadData()
+                    
                 }
                 
                 

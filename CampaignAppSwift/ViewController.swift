@@ -209,7 +209,7 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         
                  return cell
       }
-      
+
     override func viewWillAppear(_ animated: Bool) {
         UIView.animate(withDuration: 0.2){
             self.ring.value = 0
