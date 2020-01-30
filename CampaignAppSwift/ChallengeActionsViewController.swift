@@ -26,7 +26,7 @@ class ChallengeActionsViewController: UIViewController,UITableViewDelegate, UITa
         return cell
         
     }
-    
+       let screenHeight = UIScreen.main.bounds.height
 var challengeTitle = ""
 var challengeDesc = ""
     var actionImageUrl = "https://campaigndata-campaign.appspot.com/?t=act&w=500&crop=true&file="
@@ -39,17 +39,44 @@ var challengeId = ""
     @IBOutlet weak var challengeActionsTableView: UITableView!
     
   
+    @IBOutlet weak var challengeActionsScroller: UIScrollView!
     @IBOutlet weak var challengTitleLabel: UILabel!
     @IBOutlet weak var challengeImageView: UIImageView!
     @IBOutlet weak var challengeDescLabel: UILabel!
+    var scrollViewContentHeight = 1200 as CGFloat
     var refProfile: FirebaseApp!
        var ref: DatabaseReference!
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200.0;//Choose your custom row height
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+           let yOffset = scrollView.contentOffset.y
+
+        if scrollView == self.challengeActionsScroller {
+               if yOffset >= scrollViewContentHeight - screenHeight {
+                   scrollView.isScrollEnabled = false
+                self.challengeActionsTableView.isScrollEnabled = true
+               }
+           }
+
+           if scrollView == self.challengeActionsTableView {
+               if yOffset <= 0 {
+                   self.challengeActionsScroller.isScrollEnabled = true
+                self.challengeActionsTableView.isScrollEnabled = false
+               }
+           }
+       }
+
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        self.challengeActionsScroller.contentSize = CGSize(width:300, height:scrollViewContentHeight-90)
+        self.challengeActionsTableView.frame.size = CGSize(width:300, height:self.challengeActionsTableView.contentSize.height+1000)
+        self.challengeActionsScroller.isScrollEnabled=true
+       
+        self.challengeActionsScroller.layoutIfNeeded()
+        self.challengeActionsTableView.isScrollEnabled=false
         challengTitleLabel.text = self.challengeTitle
         challengeDescLabel.text = self.challengeDesc
         ref = Database.database().reference()
@@ -93,16 +120,17 @@ var challengeId = ""
            // let videoURL = URL(string: challengeImgVidUrl+self.challengeImageVidUrl)
            guard let url = URL(string: challengeImgVidUrl+self.challengeImageVidUrl) else { return }
             let player = AVPlayer(url: url)
+            let playerLayer = AVPlayerLayer(player: player )
             player.rate = 1 //auto play
-            let playerFrame = CGRect(x: challengeImageView.frame.origin.x, y: challengeImageView.frame.origin.y+50, width: challengeImageView.frame.width, height: challengeImageView.frame.height)
+            let playerFrame = CGRect(x: challengeImageView.frame.origin.x , y: challengeImageView.frame.origin.y+50 + self.challengeActionsScroller.contentOffset.y, width: challengeImageView.frame.width, height: challengeImageView.frame.height)
             let playerViewController = AVPlayerViewController()
             playerViewController.player = player
             playerViewController.view.frame = playerFrame
-
             addChild(playerViewController)
-            view.addSubview(playerViewController.view)
-            playerViewController.didMove(toParent: self)
+        
+             playerViewController.didMove(toParent: self)
             playerViewController.player?.pause()
+            self.view.addSubview(playerViewController.view)
         }
         else{
             let url = URL(string: challengeImageVidUrl)
@@ -113,7 +141,13 @@ var challengeId = ""
         // Do any additional setup after loading the view.
     }
     
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
 
+        print("scrollViewWillBeginDecelerating")
+
+        let actualPosition = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
+        print(actualPosition.y)
+    }
     /*
     // MARK: - Navigation
 

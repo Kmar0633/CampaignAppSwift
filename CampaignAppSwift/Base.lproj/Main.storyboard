@@ -95,6 +95,7 @@
                     </view>
                     <connections>
                         <outlet property="challengTitleLabel" destination="exM-l4-ueL" id="E9n-fQ-QnR"/>
+                        <outlet property="challengeActionsScroller" destination="OUl-kl-hDm" id="xtN-iV-YSs"/>
                         <outlet property="challengeActionsTableView" destination="OFW-13-8i6" id="DKu-Kc-jEF"/>
                         <outlet property="challengeDescLabel" destination="9Iw-rP-SW6" id="RaL-ZP-3WB"/>
                         <outlet property="challengeImageView" destination="Ql0-9G-dgy" id="kas-7f-6vr"/>
