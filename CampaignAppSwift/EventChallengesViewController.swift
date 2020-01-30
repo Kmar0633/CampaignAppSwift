@@ -38,6 +38,7 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     var challengeTitle = ""
     var challengeDesc = ""
     var challengeImageVidUrl = ""
+    var challengeId = ""
  var eventChallengesIds = [String]()
     var challengesActionsUserTakes = [String]()
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -185,6 +186,7 @@ self.challengeCollectionView.isScrollEnabled = false
 func collectionView(_ tableView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     self.challengeTitle=self.eventChallengeEntities[indexPath.item].ChallengeTitle
     self.challengeDesc=self.eventChallengeEntities[indexPath.item].ChallengeDesc
+    self.challengeId = self.eventChallengeEntities[indexPath.item].UpdateId
    
     if(self.eventChallengeEntities[indexPath.item].isVid == false){ self.challengeImageVidUrl=self.eventChallengeEntities[indexPath.item].EventImageVidUrl
     }
@@ -206,6 +208,7 @@ func collectionView(_ tableView: UICollectionView, didSelectItemAt indexPath: In
         svc.challengeTitle = self.challengeTitle
         svc.challengeDesc = self.challengeDesc
         svc.challengeImageVidUrl = self.challengeImageVidUrl
+        svc.challengeId = self.challengeId
 //               svc.eventImageUrl = self.eventImageUrl
 //               svc.eventId = self.eventIdBNU
 //               svc.eventDescrip = self.eventDescription
