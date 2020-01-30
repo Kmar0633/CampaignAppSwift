@@ -31,14 +31,19 @@ var challengeImageVidUrl = ""
             
         if(challengeImageVidUrl.contains(".mp4")){
         print(self.challengeImageVidUrl)
-            let videoURL = URL(string: challengeImgVidUrl+self.challengeImageVidUrl)
-            let player = AVPlayer(url: videoURL!)
-            let playerLayer = AVPlayerLayer(player: player)
-            playerLayer.frame = self.view.bounds
-            playerLayer.frame = CGRect(x: 0, y: 0, width: 352, height: 180)
-            self.view.layer.addSublayer(playerLayer)
-            player.play()
-            print(challengeImgVidUrl+self.challengeImageVidUrl)
+           // let videoURL = URL(string: challengeImgVidUrl+self.challengeImageVidUrl)
+           guard let url = URL(string: challengeImgVidUrl+self.challengeImageVidUrl) else { return }
+            let player = AVPlayer(url: url)
+            player.rate = 1 //auto play
+            let playerFrame = CGRect(x: challengeImageView.frame.origin.x, y: challengeImageView.frame.origin.y+50, width: challengeImageView.frame.width, height: challengeImageView.frame.height)
+            let playerViewController = AVPlayerViewController()
+            playerViewController.player = player
+            playerViewController.view.frame = playerFrame
+
+            addChild(playerViewController)
+            view.addSubview(playerViewController.view)
+            playerViewController.didMove(toParent: self)
+            playerViewController.player?.pause()
         }
         else{
             let url = URL(string: challengeImageVidUrl)
