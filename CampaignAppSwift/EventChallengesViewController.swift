@@ -3,7 +3,7 @@
 //  CampaignAppSwift
 //
 //  Created by Kevin Marcelino on 21/01/20.
-//  Copyright © 2020 Kevin Marcelino. All rights reserved.
+//  Copyright © 2020 Kevin BJKMarcelino. All rights reserved.
 //
 
 import UIKit
@@ -31,6 +31,7 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
   
     @IBOutlet weak var eventDescripLabel: UILabel!
     var eventDescrip = ""
+    var challengeVidUrl = ""
     var refProfile: FirebaseApp!
     var ref: DatabaseReference!
     @IBOutlet weak var eventChallengebottomConstraint: NSLayoutConstraint!
@@ -119,12 +120,14 @@ self.challengeCollectionView.isScrollEnabled = false
                                 updates.child(key).child("pict").child("pict1").observeSingleEvent(of: .value) { (DataSnapshot) in
                                         let pictValue = DataSnapshot.value as? NSDictionary
                                                                    let challengePict = pictValue?["attfile"] as? String ?? ""
+                                        let vidUrl = pictValue?["video"] as? String ?? ""
+                                    
                                         let isVidValue = DataSnapshot.value as? NSDictionary
                                         
                                         let isVid = isVidValue?["is_video"] as? String ?? ""
                                        
                                         var eventChallengeEntity = EventChallengeEntity()
-                                        
+                                    eventChallengeEntity.ChallengeVidUrl = vidUrl
                                     eventChallengeEntity.ChallengeTitle = updateTitle
                                     
                                     eventChallengeEntity.ChallengeDesc = updateDesc
@@ -182,10 +185,19 @@ self.challengeCollectionView.isScrollEnabled = false
 func collectionView(_ tableView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     self.challengeTitle=self.eventChallengeEntities[indexPath.item].ChallengeTitle
     self.challengeDesc=self.eventChallengeEntities[indexPath.item].ChallengeDesc
-    self.challengeImageVidUrl=self.eventChallengeEntities[indexPath.item].EventImageVidUrl
-//          self.eventDescription=self.eventDescrips[indexPath.item]
+   
+    if(self.eventChallengeEntities[indexPath.item].isVid == false){ self.challengeImageVidUrl=self.eventChallengeEntities[indexPath.item].EventImageVidUrl
+    }
+    else{
+        self.challengeImageVidUrl=self.eventChallengeEntities[indexPath.item].ChallengeVidUrl
+    }
+    
+//        self.eventDescription=self.eventDescrips[indexPath.item]
 //          self.eventId=self.eventIds[indexPath.item]
-         self.performSegue(withIdentifier: "toChallengeActions", sender: indexPath.item)
+    if(self.eventChallengeEntities[indexPath.item].IsAttended==true){
+        self.performSegue(withIdentifier: "toChallengeActions", sender: indexPath.item)
+        
+    }
       }
     
    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -193,6 +205,7 @@ func collectionView(_ tableView: UICollectionView, didSelectItemAt indexPath: In
                let svc = segue.destination as! ChallengeActionsViewController
         svc.challengeTitle = self.challengeTitle
         svc.challengeDesc = self.challengeDesc
+        svc.challengeImageVidUrl = self.challengeImageVidUrl
 //               svc.eventImageUrl = self.eventImageUrl
 //               svc.eventId = self.eventIdBNU
 //               svc.eventDescrip = self.eventDescription
