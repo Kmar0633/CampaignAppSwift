@@ -73,7 +73,7 @@ var challengeId = ""
         super.viewDidLoad()
         self.challengeActionsScroller.contentSize = CGSize(width:300, height:scrollViewContentHeight-90)
         self.challengeActionsTableView.frame.size = CGSize(width:300, height:self.challengeActionsTableView.contentSize.height+1000)
-        self.challengeActionsScroller.isScrollEnabled=true
+        self.challengeActionsScroller.isScrollEnabled=false
        
         self.challengeActionsScroller.layoutIfNeeded()
         self.challengeActionsTableView.isScrollEnabled=false
